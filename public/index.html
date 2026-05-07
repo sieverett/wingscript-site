@@ -24,7 +24,8 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!-- Hidden form for Netlify Forms detection (SPA requires this) -->
-    <form name="beta-signup" netlify netlify-honeypot="bot-field" hidden>
+    <form name="beta-signup" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" />
       <input name="email" />
       <input name="role" />
       <input name="volume" />
