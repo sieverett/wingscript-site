@@ -228,7 +228,6 @@ export type LandingVariant = "sales" | "never-blank" | "teams";
 // Variant C (teams): "Your team's knowledge. Live on every call."
 export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = "sales" }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => setModalOpen(true);
 
   return (
     <div className="theme-light">
@@ -240,9 +239,9 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <span className="nav__wm">cuedesk</span>
           </a>
           <a href="#who" className="nav__link">for sales teams</a>
-          <button className="btn btn--primary" onClick={openModal}>
+          <a href="https://chromewebstore.google.com/detail/cuedesk/hgekagfaoojilnelfgalkbocbeimfphb" className="btn btn--primary" target="_blank" rel="noopener noreferrer">
             get early access <span className="btn__arrow">→</span>
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -265,9 +264,9 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
           </div>
         </div>
         <div className="hero__cta">
-          <button className="btn btn--primary btn--lg" onClick={openModal}>
+          <a href="https://chromewebstore.google.com/detail/cuedesk/hgekagfaoojilnelfgalkbocbeimfphb" className="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">
             get early access <span className="btn__arrow">→</span>
-          </button>
+          </a>
           <p className="hero__scarcity">Beta is invite-only. We're onboarding 15 AEs in May.</p>
         </div>
       </section>
@@ -398,9 +397,9 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <p>cuedesk is in invite-only beta. We're onboarding 15 AEs in May at $25/month — not because that's the price, but because free users don't give honest feedback. Public pricing will land after we know what this is worth to the people using it on real calls.</p>
             <p>If you want in, request access. We'll review and respond within 48 hours.</p>
           </div>
-          <button className="btn btn--primary btn--lg" style={{ marginTop: 24 }} onClick={openModal}>
+          <a href="https://chromewebstore.google.com/detail/cuedesk/hgekagfaoojilnelfgalkbocbeimfphb" className="btn btn--primary btn--lg" style={{ marginTop: 24 }} target="_blank" rel="noopener noreferrer">
             request beta access <span className="btn__arrow">→</span>
-          </button>
+          </a>
         </div>
       </section>
 

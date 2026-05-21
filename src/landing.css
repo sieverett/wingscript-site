@@ -1,6 +1,7 @@
 /* Landing page styles — tokens imported separately via LandingPage.tsx */
 
 /* body styles scoped to .theme-light in landing-tokens.css */
+html, body { overflow-x: hidden; }
 
 /* ============== buttons ============== */
 .btn {
@@ -44,7 +45,7 @@
 }
 .hero__h {
   font-family: var(--font-display); font-weight: 600;
-  font-size: 80px; line-height: 0.98; letter-spacing: -0.035em;
+  font-size: clamp(36px, 6.5vw, 80px); line-height: 0.98; letter-spacing: -0.035em;
   margin: 0;
 }
 .hero__h span { display: block; }
@@ -114,7 +115,7 @@
 /* ============== sections common ============== */
 .section-h {
   font-family: var(--font-display); font-weight: 600;
-  font-size: 48px; line-height: 1.05; letter-spacing: -0.028em;
+  font-size: clamp(28px, 4.2vw, 48px); line-height: 1.05; letter-spacing: -0.028em;
   margin: 0 0 24px;
 }
 .prose-section { padding: 96px 32px; border-top: 1px solid var(--border); }
@@ -228,8 +229,72 @@
 
 @media (max-width: 880px) {
   .hero__inner { grid-template-columns: 1fr; gap: 32px; }
-  .hero__h { font-size: 56px; }
   .how__frames { grid-template-columns: 1fr; gap: 32px; }
   .fit { grid-template-columns: 1fr; }
-  .section-h { font-size: 36px; }
+}
+
+/* ============== mobile ============== */
+@media (max-width: 640px) {
+  /* nav: hide center link, simplify to brand + CTA */
+  .nav__inner {
+    grid-template-columns: 1fr auto;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  .nav__link { display: none; }
+  .nav .btn { font-size: 13px; padding: 14px 14px; min-height: 44px; }
+
+  /* hero */
+  .hero { padding: 40px 16px 24px; }
+  .hero__cta { padding: 0 16px; margin: 24px auto 48px; }
+
+  /* livedemo: stack transcript + cues */
+  .livedemo__body {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .livedemo__transcript {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    max-height: 180px;
+    overflow-y: auto;
+  }
+
+  /* prose sections */
+  .prose-section { padding: 48px 16px; }
+  .prose p { font-size: 16px; }
+  .prose-lead { font-size: 16px; }
+
+  /* how it works */
+  .how { padding: 48px 16px; }
+  .how__inner .section-h { margin-bottom: 32px; }
+  .how__frames { gap: 24px; }
+
+  /* disclosure */
+  .disclosure { margin: 24px 0; }
+
+  /* demo video: edge-to-edge for max scale */
+  .demo-video-section { padding: 32px 0 48px; }
+  .demo-video-wrap { border-radius: 0; }
+
+  /* footer */
+  .footer { padding: 32px 16px 16px; }
+  .footer__inner { flex-direction: column; gap: 24px; }
+  .footer__copy { margin-top: 24px; }
+
+  /* tap targets */
+  .btn { min-height: 44px; padding: 12px 16px; }
+  .btn--lg { padding: 14px 22px; }
+  .chip { padding: 10px 14px; min-height: 44px; display: inline-flex; align-items: center; }
+  .footer__links a { padding: 8px 0; }
+}
+
+@media (max-width: 480px) {
+  /* modal */
+  .modal-scrim { padding: 12px; }
+  .modal { padding: 20px; }
+  .modal__h { font-size: 22px; }
+
+  /* hero sub text */
+  .hero__sub { font-size: 16px; }
 }
