@@ -370,26 +370,6 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
         </div>
       </section>
 
-      {/* ── HOW WE USE GOOGLE DATA ──────────────────── */}
-      <section className="prose-section" id="google-data">
-        <div className="prose-inner">
-          <h2 className="section-h">How cuedesk uses your Google data</h2>
-          <div className="disclosure">
-            <h3 className="disclosure__h">Sign-in (email, name, profile picture)</h3>
-            <p>Used to create and authenticate your cuedesk account via Google OAuth.</p>
-          </div>
-          <div className="disclosure">
-            <h3 className="disclosure__h">Google Calendar (read-only)</h3>
-            <p>Read-only access to your upcoming events so cuedesk can detect scheduled meetings and prepare relevant context before each call. cuedesk never modifies your calendar.</p>
-          </div>
-          <div className="disclosure">
-            <h3 className="disclosure__h">Google Drive (drive.file)</h3>
-            <p>Used to export your call summaries to a Google Sheet that cuedesk creates in your Drive. The <code>drive.file</code> scope limits cuedesk to files it creates — it cannot read your existing Drive contents.</p>
-          </div>
-          <p className="prose-lead">cuedesk's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements. Read our <a href="/privacy">Privacy Policy</a> for full details.</p>
-        </div>
-      </section>
-
       {/* ── WHO IT'S FOR ────────────────────────────── */}
       <section className="prose-section" id="who">
         <div className="prose-inner">
