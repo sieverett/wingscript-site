@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
-        <Route path="/" element={<Navigate to="/sales" replace />} />
+        <Route path="/" element={<LandingPage variant="sales" />} />
         <Route path="/sales" element={<LandingPage variant="sales" />} />
         <Route path="/never-blank" element={<LandingPage variant="never-blank" />} />
         <Route path="/teams" element={<LandingPage variant="teams" />} />
