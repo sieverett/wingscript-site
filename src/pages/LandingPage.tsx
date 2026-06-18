@@ -34,6 +34,10 @@ const LOOP = 11500;
 function LiveDemo() {
   const [tick, setTick] = useState(0);
   useEffect(() => {
+    // react-snap prerenders with "ReactSnap" in the UA. Skip the animation during
+    // prerender so the snapshot is the tick=0 state — which matches the client's first
+    // render and avoids a hydration mismatch. The animation runs normally after hydrate.
+    if (typeof navigator !== "undefined" && /ReactSnap/i.test(navigator.userAgent)) return;
     const id = setInterval(() => setTick(t => (t + 100) % LOOP), 100);
     return () => clearInterval(id);
   }, []);
@@ -54,7 +58,7 @@ function LiveDemo() {
         <span className="livedemo__dot" />
         <span className="livedemo__live">Live</span>
         <span className="livedemo__meta">discovery · acme corp</span>
-        <span className="livedemo__ts">{mm}:{ss}</span>
+        <span className="livedemo__ts">{`${mm}:${ss}`}</span>
       </div>
       <div className="livedemo__body">
         <div className="livedemo__transcript">
@@ -437,7 +441,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <a href="mailto:legal@cuedesk.com">terms</a>
           </div>
         </div>
-        <div className="footer__copy">&copy; {new Date().getFullYear()} cuedesk, inc.</div>
+        <div className="footer__copy">{`© ${new Date().getFullYear()} cuedesk, inc.`}</div>
       </footer>
 
       {/* ── MODAL ───────────────────────────────────── */}

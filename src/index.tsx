@@ -5,11 +5,9 @@ import './tailwind.output.css';
 import './index.css';
 import { LandingPage } from './pages/LandingPage';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const rootElement = document.getElementById('root') as HTMLElement;
 
-root.render(
+const app = (
   <React.StrictMode>
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
@@ -22,3 +20,11 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// react-snap prerenders static HTML into #root at build time. When that content
+// is present, hydrate it; otherwise (dev / un-prerendered) do a fresh client render.
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrateRoot(rootElement, app);
+} else {
+  ReactDOM.createRoot(rootElement).render(app);
+}

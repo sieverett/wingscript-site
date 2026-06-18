@@ -71,6 +71,9 @@ export function Stage({ width = 1280, height = 800, duration = 28, background = 
 
   // Auto-scale to fit container
   React.useEffect(() => {
+    // Skip during react-snap prerender so the snapshot keeps scale=1, matching the
+    // client's first render and avoiding a hydration mismatch. Re-measures after hydrate.
+    if (typeof navigator !== "undefined" && /ReactSnap/i.test(navigator.userAgent)) return;
     const el = containerRef.current;
     if (!el) return;
     const measure = () => {
@@ -85,6 +88,9 @@ export function Stage({ width = 1280, height = 800, duration = 28, background = 
 
   // Animation loop
   React.useEffect(() => {
+    // Skip during react-snap prerender so the snapshot captures time=0 (the client's
+    // first-render state); the animation starts after hydration on the real client.
+    if (typeof navigator !== "undefined" && /ReactSnap/i.test(navigator.userAgent)) return;
     const step = (ts: number) => {
       if (lastTsRef.current == null) lastTsRef.current = ts;
       const dt = (ts - lastTsRef.current) / 1000;
