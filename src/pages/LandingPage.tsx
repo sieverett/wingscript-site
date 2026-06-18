@@ -441,7 +441,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <a href="mailto:legal@cuedesk.com">terms</a>
           </div>
         </div>
-        <div className="footer__copy">&copy; {new Date().getFullYear()} cuedesk, inc.</div>
+        <div className="footer__copy">{`© ${new Date().getFullYear()} cuedesk, inc.`}</div>
       </footer>
 
       {/* ── MODAL ───────────────────────────────────── */}
