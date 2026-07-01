@@ -243,7 +243,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <span className="nav__wm">wingscript</span>
           </a>
           <a href="#who" className="nav__link">for sales teams</a>
-          <a href="https://chromewebstore.google.com/detail/cuedesk/hgekagfaoojilnelfgalkbocbeimfphb" className="btn btn--primary" target="_blank" rel="noopener noreferrer">
+          <a href="https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp" className="btn btn--primary" target="_blank" rel="noopener noreferrer">
             get early access <span className="btn__arrow">→</span>
           </a>
         </div>
@@ -253,6 +253,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
       <section className="hero">
         <div className="hero__inner">
           <div className="hero__copy">
+            <p className="hero__eyebrow">Ready for Lift Off</p>
             <h1 className="hero__h">
               <span>Claude.</span>
               <span>On every call.</span>
@@ -268,7 +269,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
           </div>
         </div>
         <div className="hero__cta">
-          <a href="https://chromewebstore.google.com/detail/cuedesk/hgekagfaoojilnelfgalkbocbeimfphb" className="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">
+          <a href="https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp" className="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">
             get early access <span className="btn__arrow">→</span>
           </a>
           <p className="hero__scarcity">Beta is invite-only. We're onboarding 15 AEs in May.</p>
@@ -401,7 +402,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <p>wingscript is in invite-only beta. We're onboarding 15 AEs in May at $25/month — not because that's the price, but because free users don't give honest feedback. Public pricing will land after we know what this is worth to the people using it on real calls.</p>
             <p>If you want in, request access. We'll review and respond within 48 hours.</p>
           </div>
-          <a href="https://chromewebstore.google.com/detail/cuedesk/hgekagfaoojilnelfgalkbocbeimfphb" className="btn btn--primary btn--lg" style={{ marginTop: 24 }} target="_blank" rel="noopener noreferrer">
+          <a href="https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp" className="btn btn--primary btn--lg" style={{ marginTop: 24 }} target="_blank" rel="noopener noreferrer">
             request beta access <span className="btn__arrow">→</span>
           </a>
         </div>
