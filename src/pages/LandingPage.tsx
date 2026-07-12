@@ -242,7 +242,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <img src="/cuedesk-mark.svg?v=ws1" alt="" className="nav__icon" />
             <span className="nav__wm">wingscript</span>
           </a>
-          <a href="#who" className="nav__link">for sales teams</a>
+          <a href="#teams" className="nav__link">for sales teams</a>
           <a href="https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp" className="btn btn--primary" target="_blank" rel="noopener noreferrer">
             get early access <span className="btn__arrow">→</span>
           </a>
@@ -260,8 +260,9 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
               <span>Live.</span>
             </h1>
             <p className="hero__sub">
-              wingscript listens to your sales calls and feeds you the answer
-              before the silence gets awkward.
+              wingscript is a real-time AI sales assistant — a Chrome extension
+              that listens to your call and cues you with answers from your CRM,
+              playbooks, and past calls, before the silence gets awkward.
             </p>
           </div>
           <div className="hero__demo">
@@ -272,18 +273,18 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
           <a href="https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp" className="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">
             get early access <span className="btn__arrow">→</span>
           </a>
-          <p className="hero__scarcity">Beta is invite-only. We're onboarding 15 AEs in May.</p>
+          <p className="hero__scarcity">Beta is invite-only. We're onboarding 15 reps in July.</p>
         </div>
       </section>
 
       {/* ── THE MOMENT ──────────────────────────────── */}
       <section className="prose-section">
         <div className="prose-inner">
-          <h2 className="section-h">Every AE knows the moment.</h2>
+          <h2 className="section-h">Every new rep knows the moment.</h2>
           <div className="prose">
-            <p>The prospect asks a question you should know the answer to. A pricing detail buried in a doc you read three weeks ago. A competitor comparison you reviewed in onboarding. A reference customer in their industry that you swear exists somewhere in the CRM.</p>
-            <p>You have two seconds. You can stall — "great question, let me come back to that" — and lose momentum. You can guess and risk being wrong. Or you can be the AE who somehow always has the answer ready, and watch the call shift.</p>
-            <p>wingscript is how you become that AE. It's not magic. It's just your own knowledge — your CRM, your playbooks, your call history, plus Claude — surfacing the right thing at the right second.</p>
+            <p>You're six weeks in. The prospect asks a question you should know the answer to. A pricing detail from a doc you read during onboarding. A competitor comparison someone walked you through on day four. A reference customer in their industry that you're pretty sure exists — somewhere in a CRM you're still learning your way around.</p>
+            <p>You have two seconds. You can stall — "great question, let me come back to that" — and watch the momentum go. You can guess, and be wrong on a call your manager is going to review. Or you can be the rep who somehow always has the answer ready. The one nobody believes started last month.</p>
+            <p>wingscript is how you become that rep. It's not magic. It's your company's knowledge — the CRM, the playbooks, the call history you haven't lived through yet — plus Claude, surfacing the right thing at the right second. The veterans carry all of this in their heads. Now you don't have to wait years to.</p>
           </div>
         </div>
       </section>
@@ -321,7 +322,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
                 </svg>
               </div>
               <h3 className="how__h">Thinks</h3>
-              <p className="how__p">It searches your CRM, your call history, your playbooks, and the open web — grounded by Claude — to find the answer that fits this specific moment.</p>
+              <p className="how__p">It searches your CRM, your call history, your playbooks, and the open web, and Claude reasons over what it finds to fit this exact moment — not a keyword match.</p>
             </div>
             <div className="how__frame">
               <div className="how__viz how__viz--cue">
@@ -331,7 +332,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
                 </div>
               </div>
               <h3 className="how__h">Cues</h3>
-              <p className="how__p">The answer appears as a card in your heads-up display. You read. You speak. The card fades.</p>
+              <p className="how__p">A cue appears as a card in your heads-up display — with the source it came from. You read. You speak. The card fades.</p>
             </div>
           </div>
         </div>
@@ -352,7 +353,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
       <section className="prose-section">
         <div className="prose-inner">
           <h2 className="section-h">"Wait, is this allowed?"</h2>
-          <p className="prose-lead">Real-time AI on sales calls is new. Before we get to pricing, here's what you actually need to know.</p>
+          <p className="prose-lead">Real-time AI on sales calls is new. Before we get to the beta, here's what you actually need to know.</p>
 
           <div className="disclosure">
             <h3 className="disclosure__h">Your audio stays on your machine.</h3>
@@ -360,8 +361,8 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
           </div>
 
           <div className="disclosure">
-            <h3 className="disclosure__h">Disclosed mode is one click.</h3>
-            <p>If your company policy or your sales motion calls for disclosure, wingscript can show a banner at the top of the call: "This call is being assisted by an AI co-pilot." Some teams prefer it. Some don't. You decide per call.</p>
+            <h3 className="disclosure__h">Disclosure is built in — and configurable.</h3>
+            <p>wingscript can show a banner at the top of the call: "This call is being assisted by an AI co-pilot." Disclosure can be set per rep, or locked on org-wide by an admin — because in some states, and some deals, it isn't optional. If your legal team has questions about real-time transcription, we'd rather talk to them before a pilot than after.</p>
           </div>
 
           <div className="disclosure">
@@ -371,26 +372,51 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
         </div>
       </section>
 
+      {/* ── COMPATIBILITY ───────────────────────────── */}
+      <section className="prose-section">
+        <div className="prose-inner">
+          <h2 className="section-h">Works with the stack you already use.</h2>
+          <p className="prose-lead">wingscript is a Chrome extension, so it works on calls that run in your browser — Google Meet and Zoom-on-the-web. The Zoom desktop app isn't captured yet, so run your call in the browser tab. Connect Salesforce or HubSpot for CRM context, plus Gmail, Google Calendar, and Slack so a cue can surface the email thread or the answer a teammate already gave. If your call tool or CRM isn't here, tell us when you request access — it shapes what we build next.</p>
+        </div>
+      </section>
+
       {/* ── WHO IT'S FOR ────────────────────────────── */}
       <section className="prose-section" id="who">
         <div className="prose-inner">
-          <h2 className="section-h">Built for AEs who run live calls.</h2>
-          <p className="prose-lead">If you do 5 to 15 live calls a week — discovery, demo, negotiation, renewal — wingscript earns its keep. If you're an SDR doing 60 cold dials a day, this isn't built for you yet. If you're a CSM running QBRs, we're probably useful but you won't be the first to try it. We're focused.</p>
+          <h2 className="section-h">Built for reps who are still ramping.</h2>
+          <p className="prose-lead">The gap wingscript closes is the one between "I read that somewhere" and "here's the answer." That gap is widest in your first year. If you've carried the same patch for a decade and the playbook lives in your head, it'll mostly stay out of your way — it's built for everyone who isn't there yet.</p>
 
           <div className="fit">
             <div className="fit__card">
-              <div className="fit__lbl">Mid-market AEs</div>
-              <p>Discovery and demo calls. Deal sizes $20k–$150k. You're the one in the room.</p>
+              <div className="fit__lbl">New AEs</div>
+              <p>Your first 90 days of discovery and demo calls. You already know how to sell — you don't know this product, this pricing, these competitors yet. wingscript does.</p>
+            </div>
+            <div className="fit__card">
+              <div className="fit__lbl">Ramping SDRs</div>
+              <p>If your motion is inbound qualification — real fifteen-minute conversations about fit, budget, and timing — wingscript works the same way it does for AEs. If it's sixty cold dials a day, we're not built for that yet. We'd rather tell you now.</p>
             </div>
             <div className="fit__card">
               <div className="fit__lbl">Founder-led sales</div>
-              <p>You're the founder. You're closing the deal. You don't have a coach. wingscript is the coach.</p>
-            </div>
-            <div className="fit__card">
-              <div className="fit__lbl">Sales engineers</div>
-              <p>Technical questions mid-call. wingscript surfaces the doc, the spec, the integration detail.</p>
+              <p>Closing your own deals with no ramp and no coach. No playbook yet? It runs on the open web and your own calls while you build one. wingscript is the veteran in your ear you never hired.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── FOR MANAGERS ────────────────────────────── */}
+      <section className="prose-section prose-section--dark" id="teams">
+        <div className="prose-inner">
+          <h2 className="section-h">If you hire reps, do the math.</h2>
+          <div className="prose">
+            <p>Take your newest rep's fully-loaded monthly cost. Multiply by the months before they produce a real quarter. Multiply that by everyone you hired this year — then add the ones who left, taking every onboarding session, shadow call, and answered Slack question with them. That's the number wingscript is aimed at.</p>
+            <p><strong>It shortens the expensive part.</strong> Your playbooks, pricing, and call history reach the new rep mid-call from week one, instead of waiting to be memorized. And when a rep leaves, the answers stay in the system — not in the exit interview.</p>
+            <p><strong>You see it early — and so do they.</strong> You won't wait a full ramp cycle to know if it's working. Scores against your own methodology are the leading signal — who's picking it up, who's stuck and on what — while your real number, ramped pipeline, catches up behind them. The rep sees exactly what you see, same scores, same day. The conversation moves from "why'd you miss quota" to "here's the one thing to work on," both of you looking at the same screen.</p>
+            <p><strong>Proficiency in your methodology, not ours.</strong> wingscript scores calls against the framework your company actually runs — MEDDIC, SPIN, Challenger, Straight Line, or your own playbook. Every organization configures it the way they want. The cues and the scoring follow your system, not a generic rubric we invented.</p>
+            <p>We run pilots with teams onboarding new hires this quarter.</p>
+          </div>
+          <a href="mailto:hello@wingscript.com?subject=wingscript%20team%20pilot" className="btn btn--primary btn--lg" style={{ marginTop: 24 }}>
+            request a team pilot <span className="btn__arrow">→</span>
+          </a>
         </div>
       </section>
 
@@ -399,12 +425,39 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
         <div className="prose-inner">
           <h2 className="section-h">We're not selling this yet.</h2>
           <div className="prose">
-            <p>wingscript is in invite-only beta. We're onboarding 15 AEs in May at $25/month — not because that's the price, but because free users don't give honest feedback. Public pricing will land after we know what this is worth to the people using it on real calls.</p>
+            <p>wingscript is in invite-only beta. We're onboarding 15 reps in July at $25/month — not because that's the price, but because free users don't give honest feedback. Public pricing will land after we know what this is worth to the people using it on real calls.</p>
             <p>If you want in, request access. We'll review and respond within 48 hours.</p>
           </div>
           <a href="https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp" className="btn btn--primary btn--lg" style={{ marginTop: 24 }} target="_blank" rel="noopener noreferrer">
             request beta access <span className="btn__arrow">→</span>
           </a>
+        </div>
+      </section>
+
+      {/* ── FAQ ─────────────────────────────────────── */}
+      <section className="prose-section">
+        <div className="prose-inner">
+          <h2 className="section-h">Questions reps actually ask.</h2>
+
+          <div className="disclosure">
+            <h3 className="disclosure__h">Can I use it without connecting my company's tools?</h3>
+            <p>It starts working the moment it's on a call — live transcription plus the open web. The real power comes from your CRM and playbooks, and connecting those is usually a call for whoever owns them. Most reps loop in their manager; that's what the pilot is for.</p>
+          </div>
+
+          <div className="disclosure">
+            <h3 className="disclosure__h">What if a cue is wrong?</h3>
+            <p>Every cue names its source — "from the pricing sheet, updated May" — so when you say it, you know where it came from. It's an assist, not autopilot: your call whether to use it.</p>
+          </div>
+
+          <div className="disclosure">
+            <h3 className="disclosure__h">Will my manager think I'm cheating?</h3>
+            <p>Plenty of managers hand it to new hires on day one — ramping faster is the point, and the disclosure banner keeps it above board.</p>
+          </div>
+
+          <div className="disclosure">
+            <h3 className="disclosure__h">Is my prospect's data safe?</h3>
+            <p>Audio never leaves your machine; transcripts and context go to Claude over an encrypted connection. For retention, deletion, and a full security review, email <a href="mailto:security@wingscript.com">security@wingscript.com</a>.</p>
+          </div>
         </div>
       </section>
 
