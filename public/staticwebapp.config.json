@@ -1,0 +1,13 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/static/*",
+      "/*.{svg,png,jpg,jpeg,ico,css,js,json,txt,xml,webp,woff,woff2,map,html}"
+    ]
+  },
+  "routes": [
+    { "route": "/privacy", "rewrite": "/privacy.html" },
+    { "route": "/terms", "rewrite": "/terms.html" }
+  ]
+}

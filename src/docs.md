@@ -1,17 +1,17 @@
-# Noridoc: cuedesk-site src
+# Noridoc: wingscript-site src
 
 Path: @/src
 
 ### Overview
 
-- Standalone marketing / landing site for cuedesk, separate from the product app codebase
-- React 19 + TypeScript, built with CRA (`react-scripts`), deployed to Netlify
+- Standalone marketing / landing site for wingscript (wingscript.com), separate from the product app codebase
+- React 19 + TypeScript, built with CRA (`react-scripts`), deployed to Azure Static Web Apps
 - All styling is hand-written CSS using custom properties -- Tailwind is installed but its utility classes are not used anywhere in the source
 
 ### How it fits into the larger codebase
 
-- This is a **separate repository** (`cuedesk-site`) from the main product (`converse-ai`). It has no auth, no backend, no sidecar, no Chrome extension
-- Deployed to Netlify with an SPA catch-all redirect (`netlify.toml`). The build output goes to `build/`
+- This is a **separate repository** (`wingscript-site`) from the main product (`converse-ai`). It has no auth, no backend, no sidecar, no Chrome extension
+- Deployed to Azure Static Web Apps (`swa-wingscript-www` in `rg-wingscript-prod`, serving wingscript.com + www) via the `deploy-azure-swa.yml` GitHub Action on push to `main`. SPA routing + `/privacy` and `/terms` rewrites live in `public/staticwebapp.config.json`. The build output goes to `build/`
 - Design tokens in `landing-tokens.css` share the same visual language as the product app's `theme.css`, but the two are independent copies -- changes in one do not propagate to the other
 
 ### Core Implementation
@@ -59,7 +59,7 @@ Three breakpoints plus fluid typography:
 
 - The `variant` prop on `LandingPage` is plumbing for A/B demand validation across `/sales`, `/never-blank`, and `/teams`. All three routes render identical content today
 - `LiveDemo` is tick-driven: a `tick` counter in a `setInterval` triggers transcript lines, cue cards, and the reply at hardcoded tick thresholds defined in constants at the top of `LandingPage.tsx`
-- `RequestModal` submits to Netlify Forms (HTML `form` with `data-netlify="true"`), not to any backend API
+- `RequestModal` was written against Netlify Forms. It is currently **dead code** — the live CTAs are `<a>` links to the Chrome Web Store, and the modal is never opened. After the move off Netlify it has no working submit target; wire it to an Azure-compatible endpoint (or a form service) before reactivating
 - The Tailwind toolchain (`tailwind.config.js`, `tailwind.input.css`, `tailwind.output.css`) is present as scaffolding but contributes no visible styles to the landing page -- all styling flows through `landing-tokens.css` + `landing.css`
 
 Created and maintained by Nori.
