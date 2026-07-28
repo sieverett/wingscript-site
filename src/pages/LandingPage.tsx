@@ -472,7 +472,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <a href="/privacy">privacy</a>
             <a href="mailto:security@wingscript.com">security</a>
             <a href="mailto:hello@wingscript.com">contact</a>
-            <a href="mailto:legal@wingscript.com">terms</a>
+            <a href="/terms">terms</a>
           </div>
         </div>
         <div className="footer__copy">{`© ${new Date().getFullYear()} wingscript, inc.`}</div>
