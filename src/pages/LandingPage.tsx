@@ -367,7 +367,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
 
           <div className="disclosure">
             <h3 className="disclosure__h">SOC 2 is in progress.</h3>
-            <p>We're a beta product, and we're not going to pretend otherwise. SOC 2 Type I is targeted for Q3. If you need a security review before piloting, email <a href="mailto:security@wingscript.com">security@wingscript.com</a> and we'll send the current posture doc.</p>
+            <p>We're a beta product, and we're not going to pretend otherwise. SOC 2 Type I is targeted for Q3. If you need a security review before piloting, email <a href="mailto:support@wingscript.com">support@wingscript.com</a> and we'll send the current posture doc.</p>
           </div>
         </div>
       </section>
@@ -456,7 +456,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
 
           <div className="disclosure">
             <h3 className="disclosure__h">Is my prospect's data safe?</h3>
-            <p>Audio never leaves your machine; transcripts and context go to Claude over an encrypted connection. For retention, deletion, and a full security review, email <a href="mailto:security@wingscript.com">security@wingscript.com</a>.</p>
+            <p>Audio never leaves your machine; transcripts and context go to Claude over an encrypted connection. For retention, deletion, and a full security review, email <a href="mailto:support@wingscript.com">support@wingscript.com</a>.</p>
           </div>
         </div>
       </section>
@@ -470,7 +470,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
           </div>
           <div className="footer__links">
             <a href="/privacy">privacy</a>
-            <a href="mailto:security@wingscript.com">security</a>
+            <a href="mailto:support@wingscript.com">security</a>
             <a href="mailto:hello@wingscript.com">contact</a>
             <a href="/terms">terms</a>
           </div>
