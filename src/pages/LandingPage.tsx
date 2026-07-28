@@ -475,7 +475,7 @@ export const LandingPage: React.FC<{ variant?: LandingVariant }> = ({ variant = 
             <a href="/terms">terms</a>
           </div>
         </div>
-        <div className="footer__copy">{`© ${new Date().getFullYear()} wingscript, inc.`}</div>
+        <div className="footer__copy">{`© ${new Date().getFullYear()} Weavery, LLC`}</div>
       </footer>
 
       {/* ── MODAL ───────────────────────────────────── */}
