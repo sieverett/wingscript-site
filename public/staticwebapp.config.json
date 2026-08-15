@@ -8,6 +8,9 @@
   },
   "routes": [
     { "route": "/privacy", "rewrite": "/privacy.html" },
-    { "route": "/terms", "rewrite": "/terms.html" }
+    { "route": "/terms", "rewrite": "/terms.html" },
+    { "route": "/sales", "redirect": "/", "statusCode": 301 },
+    { "route": "/teams", "redirect": "/", "statusCode": 301 },
+    { "route": "/never-blank", "redirect": "/", "statusCode": 301 }
   ]
 }
