@@ -43,6 +43,13 @@ describe('landing copy — 2026-08-15 handoff rev', () => {
   test('the teams track is scoped to 20 reps', () => {
     expect(screen.getByText('For the team · up to 20 reps')).toBeInTheDocument();
   });
+
+  test('the ramp-the-floor track prices both seat roles, not a flat per-seat rate', () => {
+    expect(
+      screen.getByText('/manager seat · $19/member seat · no platform fee')
+    ).toBeInTheDocument();
+    expect(screen.queryByText('/seat/mo · no platform fee')).not.toBeInTheDocument();
+  });
 });
 
 describe('CTA destinations', () => {

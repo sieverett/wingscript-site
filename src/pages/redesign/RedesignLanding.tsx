@@ -114,7 +114,9 @@ export const RedesignLanding: React.FC = () => {
               <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="sliders-horizontal" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Assign dojo drills; score to your methodology</div>
             </div>
             <div style={{ marginTop: 'auto' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 14 }}><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22 }}>$39</span><span style={{ fontSize: 13.5, color: 'var(--ink-500)' }}>/seat/mo · no platform fee</span></div>
+              {/* Diverges from the design source ("$39 /seat/mo") on purpose: with role
+                  pricing, a flat per-seat rate here misreads as every seat costing $39. */}
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 14 }}><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22 }}>$39</span><span style={{ fontSize: 13.5, color: 'var(--ink-500)' }}>/manager seat · $19/member seat · no platform fee</span></div>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <Button variant="primary" size="md" href={TEAM_TRIAL} {...ext}>Start a team trial  →</Button>
                 <Button variant="ghost" size="md" href={DEMO}>Book a demo</Button>
