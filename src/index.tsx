@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './tailwind.output.css';
 import './index.css';
 import { LandingPage } from './pages/LandingPage';
+import { RedesignLanding } from './pages/redesign/RedesignLanding';
 
 const rootElement = document.getElementById('root') as HTMLElement;
 
@@ -15,6 +16,8 @@ const app = (
         <Route path="/sales" element={<LandingPage variant="sales" />} />
         <Route path="/never-blank" element={<LandingPage variant="never-blank" />} />
         <Route path="/teams" element={<LandingPage variant="teams" />} />
+        {/* Unpublished redesign preview — not linked from anywhere, existing pages unchanged */}
+        <Route path="/preview" element={<RedesignLanding />} />
         <Route path="*" element={<Navigate to="/sales" replace />} />
       </Routes>
     </BrowserRouter>
