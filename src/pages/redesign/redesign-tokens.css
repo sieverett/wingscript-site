@@ -148,10 +148,12 @@
               transform var(--duration-fast) var(--ease-lift);
 }
 .wg-closer-btn:active { transform: scale(var(--press-scale)); }
-.wg-closer-btn--solid { background: #fff; color: var(--violet-500); }
-.wg-closer-btn--solid:hover { background: var(--paper); color: var(--violet-500); }
-.wg-closer-btn--ghost { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.55); }
-.wg-closer-btn--ghost:hover { background: rgba(255,255,255,.24); color: #fff; }
+/* Color rules carry the .wg-redesign prefix so they outrank the global
+   `.wg-redesign a` / `a:hover` link colors — the closer CTAs are anchors. */
+.wg-redesign .wg-closer-btn--solid { background: #fff; color: var(--violet-500); }
+.wg-redesign .wg-closer-btn--solid:hover { background: var(--paper); color: var(--violet-500); }
+.wg-redesign .wg-closer-btn--ghost { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.55); }
+.wg-redesign .wg-closer-btn--ghost:hover { background: rgba(255,255,255,.24); color: #fff; }
 
 /* One-time entrances (names namespaced to the redesign) */
 @keyframes wgLift { from { opacity: 0; transform: translateY(22px) rotate(-3deg); } to { opacity: .05; transform: none; } }
