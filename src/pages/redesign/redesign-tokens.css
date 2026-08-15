@@ -172,7 +172,8 @@
   .wg-redesign .wg-pricing-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 620px) {
-  .wg-redesign .wg-nav-links { display: none !important; }
+  /* Hide the section anchors but keep the primary "Start free" CTA reachable */
+  .wg-redesign .wg-nav-links a[href^="#"] { display: none !important; }
   .wg-redesign .wg-ramp-grid { grid-template-columns: 1fr !important; }
   .wg-redesign .wg-pricing-grid { grid-template-columns: 1fr !important; }
   .wg-redesign .wg-section { padding-left: 22px !important; padding-right: 22px !important; }

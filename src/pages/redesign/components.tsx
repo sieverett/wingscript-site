@@ -22,14 +22,15 @@ export function useLucide(): void {
     const render = () => {
       const l = (window as unknown as { lucide?: { createIcons: (o: object) => void } }).lucide;
       if (l && l.createIcons) {
-        try { l.createIcons({ attrs: { 'stroke-width': 1.5 } }); } catch { /* noop */ }
+        try { l.createIcons({ attrs: { 'stroke-width': 1.5, 'aria-hidden': 'true' } }); } catch { /* noop */ }
       }
     };
     if ((window as unknown as { lucide?: unknown }).lucide) { render(); return; }
     const existing = document.querySelector('script[data-lucide-cdn]') as HTMLScriptElement | null;
     if (existing) { existing.addEventListener('load', render); return () => existing.removeEventListener('load', render); }
     const s = document.createElement('script');
-    s.src = 'https://unpkg.com/lucide@latest';
+    // Pinned: the live site must not track an unversioned third-party script
+    s.src = 'https://unpkg.com/lucide@1.31.0';
     s.async = true;
     s.setAttribute('data-lucide-cdn', '');
     s.addEventListener('load', render);

@@ -12,6 +12,12 @@ describe('landing copy — 2026-08-15 handoff rev', () => {
     render(<RedesignLanding />);
   });
 
+  test('the hero leads with the on-every-call headline', () => {
+    expect(
+      screen.getByRole('heading', { level: 1, name: /on every call\. any dialer\. live\./i })
+    ).toBeInTheDocument();
+  });
+
   test('pricing is presented as pre-launch', () => {
     expect(screen.getByText('Pre-launch · pricing not live yet')).toBeInTheDocument();
     expect(screen.getByText('Pricing at launch.')).toBeInTheDocument();
@@ -50,7 +56,11 @@ describe('CTA destinations', () => {
       screen.getByRole('link', { name: /start free/i }),
       screen.getByRole('link', { name: /see it live on a call/i }),
     ];
-    installLinks.forEach((a) => expect(a).toHaveAttribute('href', CWS));
+    installLinks.forEach((a) => {
+      expect(a).toHaveAttribute('href', CWS);
+      expect(a).toHaveAttribute('target', '_blank');
+      expect(a).toHaveAttribute('rel', 'noopener noreferrer');
+    });
   });
 
   test('the team trial CTA starts the self-serve org flow', () => {
