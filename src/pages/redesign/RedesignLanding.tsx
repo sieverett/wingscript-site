@@ -1,8 +1,8 @@
 /* ============================================================
-   Wingscript landing redesign (unpublished preview)
+   Wingscript landing page
    Faithful recreation of the Claude Design handoff
-   "Wingscript Landing.dc.html". Lives at /preview; the existing
-   /sales /teams /never-blank pages are left untouched.
+   "Wingscript Landing.dc.html" (2026-08-15 rev: pre-launch
+   pricing, role-priced Team seats, 20-seat cap). Served at /.
    ============================================================ */
 
 import React from 'react';
@@ -12,11 +12,10 @@ import { Button, Tag, LiveDot, CueCard, Icon, useLucide } from './components';
 /* ── CTA destinations (single source of truth) ──────────────
    All five "Add to Chrome"/"Start free"/"See it live" CTAs point
    at the same Chrome Web Store listing (a product decision from
-   the handoff, not a bug). TEAM_TRIAL and DEMO are assumptions —
-   confirm/replace before publishing. */
+   the handoff, not a bug). */
 const CWS = 'https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp';
 const TEAM_TRIAL = 'https://app.wingscript.com/admin?create=1'; // self-serve org create → auto TEAM trial
-const DEMO = 'mailto:hello@wingscript.com?subject=wingscript%20team%20demo'; // TODO: swap for a scheduler when live
+const DEMO = 'mailto:hello@wingscript.com?subject=wingscript%20team%20pilot'; // TODO: swap for a scheduler when live
 const ext = { target: '_blank', rel: 'noopener noreferrer' } as const;
 
 const eyebrow: React.CSSProperties = {
@@ -105,7 +104,7 @@ export const RedesignLanding: React.FC = () => {
           <div id="teams" style={{ padding: 40, background: 'linear-gradient(160deg,#FCFAFF,#fff)', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
               <div style={{ width: 38, height: 38, borderRadius: 10, background: 'var(--violet-500)', display: 'grid', placeItems: 'center' }}><Icon name="users" style={{ width: 19, height: 19, color: '#fff' }} /></div>
-              <div style={eyebrow}>For the team · 5–50 reps</div>
+              <div style={eyebrow}>For the team · up to 20 reps</div>
             </div>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 26, lineHeight: 1.1, letterSpacing: '-.025em', margin: '0 0 10px' }}>Ramp the whole floor.</h2>
             <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--ink-500)', margin: '0 0 22px' }}>You hire, you coach, you carry a number. wingscript gets new reps productive faster and shows you where each one is stuck — the same day.</p>
@@ -189,8 +188,12 @@ export const RedesignLanding: React.FC = () => {
       <div id="pricing" className="wg-section" style={{ padding: '64px 48px', background: 'var(--paper)', borderTop: '1px solid var(--border-hairline)' }}>
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 34 }}>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 28, lineHeight: 1.12, letterSpacing: '-.025em', margin: '0 0 8px' }}>Published pricing. Start free.</h2>
-            <p style={{ fontSize: 14.5, color: 'var(--ink-500)', margin: 0 }}>Free for any rep to start. $39/seat when you're ready to ramp the team — no platform fee, no annual lock-in. Call minutes bill separately at ~$0.10/min.</p>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 12px', borderRadius: 999, background: 'var(--violet-50)', border: '1px solid var(--violet-100)', marginBottom: 14 }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--violet-500)' }} />
+              <span style={{ font: '600 10.5px/1 var(--font-sans)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--violet-500)' }}>Pre-launch · pricing not live yet</span>
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 28, lineHeight: 1.12, letterSpacing: '-.025em', margin: '0 0 8px' }}>Pricing at launch.</h2>
+            <p style={{ fontSize: 14.5, color: 'var(--ink-500)', margin: '0 auto', maxWidth: 620 }}>Free for any rep to start. When you ramp the team, you pay per role — $39 a manager seat, $19 a member seat. No platform fee, no annual lock-in. Call minutes bill separately at ~$0.10/min.</p>
           </div>
           <div className="wg-pricing-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14 }}>
             <div style={{ background: '#fff', border: '1px solid var(--border-hairline)', borderRadius: 14, padding: 24 }}>
@@ -205,13 +208,17 @@ export const RedesignLanding: React.FC = () => {
             </div>
             <div style={{ background: 'linear-gradient(150deg,#FCFAFF,#fff)', border: '1px solid var(--violet-100)', borderTop: '3px solid var(--violet-500)', borderRadius: 14, padding: 24, position: 'relative' }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, marginBottom: 4 }}>Team</div>
-              <div style={{ marginBottom: 12 }}><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26 }}>$39</span><span style={{ color: 'var(--ink-500)', fontSize: 13 }}>/seat/mo</span></div>
-              <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink-500)', margin: 0 }}>Monitoring, dashboards, drill assignment, methodology scoring.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2, marginBottom: 12 }}>
+                <div><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26 }}>$39</span><span style={{ color: 'var(--ink-500)', fontSize: 13 }}>/manager seat</span></div>
+                <div><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19 }}>$19</span><span style={{ color: 'var(--ink-500)', fontSize: 13 }}>/member seat</span></div>
+              </div>
+              <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink-500)', margin: '0 0 8px' }}>Monitoring, dashboards, drill assignment, methodology scoring.</p>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--ink-300)', margin: 0 }}>up to 20 seats</p>
             </div>
             <div style={{ background: 'var(--ink-900)', borderRadius: 14, padding: 24 }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, marginBottom: 4, color: '#fff' }}>Enterprise</div>
               <div style={{ marginBottom: 12 }}><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, color: '#fff' }}>Custom</span></div>
-              <p style={{ fontSize: 13, lineHeight: 1.55, color: 'rgba(240,238,245,.6)', margin: 0 }}>50+ seats, SSO, implementation. A demo, then a number.</p>
+              <p style={{ fontSize: 13, lineHeight: 1.55, color: 'rgba(240,238,245,.6)', margin: 0 }}>20+ seats, SSO, implementation. A demo, then a number.</p>
             </div>
           </div>
         </div>
@@ -239,8 +246,9 @@ export const RedesignLanding: React.FC = () => {
           <a href="#product">product</a>
           <a href="#pricing">pricing</a>
           <a href="/privacy">privacy</a>
-          <a href="mailto:security@wingscript.com">security</a>
+          <a href="mailto:support@wingscript.com">security</a>
           <a href="mailto:hello@wingscript.com">contact</a>
+          <a href="/terms">terms</a>
         </div>
       </div>
 

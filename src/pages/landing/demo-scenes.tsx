@@ -14,7 +14,7 @@ const LIVE = "#FF4D4D";
 const PAPER = "#ECEAE4";
 const SLATE_900 = "#0B0D10";
 
-const CWS_URL = "https://chromewebstore.google.com/detail/hgekagfaoojilnelfgalkbocbeimfphb";
+const CWS_URL = "https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const EaseOut = Easing.easeOutCubic;
