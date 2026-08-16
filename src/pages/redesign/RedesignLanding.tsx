@@ -5,17 +5,17 @@
    pricing, role-priced Team seats, 20-seat cap). Served at /.
    ============================================================ */
 
-import React from 'react';
+import React, { useState } from 'react';
 import './redesign-tokens.css';
 import { Button, Tag, LiveDot, CueCard, Icon, useLucide } from './components';
+import { DemoRequestModal } from './DemoRequestModal';
 
 /* ── CTA destinations (single source of truth) ──────────────
    All five "Add to Chrome"/"Start free"/"See it live" CTAs point
    at the same Chrome Web Store listing (a product decision from
-   the handoff, not a bug). */
+   the handoff, not a bug). Demo CTAs open the request form. */
 const CWS = 'https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp';
 const TEAM_TRIAL = 'https://app.wingscript.com/admin?create=1'; // self-serve org create → auto TEAM trial
-const DEMO = 'mailto:hello@wingscript.com?subject=wingscript%20team%20pilot'; // TODO: swap for a scheduler when live
 const ext = { target: '_blank', rel: 'noopener noreferrer' } as const;
 
 const eyebrow: React.CSSProperties = {
@@ -24,6 +24,7 @@ const eyebrow: React.CSSProperties = {
 
 export const RedesignLanding: React.FC = () => {
   useLucide();
+  const [demoOpen, setDemoOpen] = useState(false);
 
   return (
     <div className="wg-redesign wg-lp" id="top">
@@ -119,7 +120,7 @@ export const RedesignLanding: React.FC = () => {
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 14 }}><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22 }}>$39</span><span style={{ fontSize: 13.5, color: 'var(--ink-500)' }}>/manager seat · $19/member seat · no platform fee</span></div>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <Button variant="primary" size="md" href={TEAM_TRIAL} {...ext}>Start a team trial  →</Button>
-                <Button variant="ghost" size="md" href={DEMO}>Book a demo</Button>
+                <Button variant="ghost" size="md" onClick={() => setDemoOpen(true)}>Book a demo</Button>
               </div>
             </div>
           </div>
@@ -233,7 +234,7 @@ export const RedesignLanding: React.FC = () => {
           <p style={{ fontSize: 16, lineHeight: 1.6, color: 'rgba(240,238,245,.82)', margin: '0 0 28px' }}>Put a wing on your next call. Free to start — no credit card, no sales call.</p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href={CWS} {...ext} className="wg-closer-btn wg-closer-btn--solid">Add to Chrome  →</a>
-            <a href={DEMO} className="wg-closer-btn wg-closer-btn--ghost">Book a team demo</a>
+            <button type="button" onClick={() => setDemoOpen(true)} className="wg-closer-btn wg-closer-btn--ghost">Book a team demo</button>
           </div>
         </div>
       </div>
@@ -253,6 +254,8 @@ export const RedesignLanding: React.FC = () => {
           <a href="/terms">terms</a>
         </div>
       </div>
+
+      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
 
     </div>
   );
