@@ -47,18 +47,19 @@
       <img src="/cuedesk-mark.svg?v=ws1" alt="wingscript icon">
       <h1>Privacy Policy</h1>
     </div>
-    <p class="version">Version 2.1 — Effective July 20, 2026</p>
+    <p class="version">Version 2.2 — Effective August 16, 2026</p>
 
     <p>wingscript ("we", "us", "our") provides a real-time conversation
-    intelligence tool delivered as a macOS application and Chrome browser
-    extension. This policy describes what data we collect, how we use it,
-    and your rights.</p>
+    intelligence tool delivered as a Chrome browser extension, web
+    application, macOS companion app, and iOS app. This policy covers
+    those products and the wingscript.com website. It describes what data
+    we collect, how we use it, and your rights.</p>
 
     <h2>1. Data Controller</h2>
     <p>Weavery, LLC, a California limited liability company doing
     business as wingscript ("wingscript"), is the data controller of the
-    Personal Data you provide through the wingscript extension and web
-    application. For questions about how your data is handled, contact
+    Personal Data you provide through wingscript's applications and
+    website. For questions about how your data is handled, contact
     us at
     <a href="mailto:support@wingscript.com">support@wingscript.com</a>.</p>
 
@@ -71,14 +72,19 @@
       <tbody>
         <tr>
           <td>Audio</td>
-          <td>Meeting audio is captured and transcribed <strong>on your
-          device</strong>. Raw audio is never transmitted to our servers.</td>
-          <td>Your device only</td>
+          <td>During a session, audio from your microphone and — with
+          your permission — from your meeting or call is streamed over an
+          encrypted connection and transcribed in real time, either on
+          our servers or by our speech-to-text provider, Deepgram. The
+          iOS app streams audio directly to Deepgram. Audio is processed
+          transiently for transcription and deleted immediately; it is
+          never stored. Only the resulting text transcript is retained.</td>
+          <td>Azure (US regions); Deepgram</td>
         </tr>
         <tr>
           <td>Transcripts</td>
-          <td>Text transcripts generated on-device are sent to our backend
-          for real-time analysis and session history.</td>
+          <td>Text transcripts of your sessions, used for real-time
+          analysis and session history.</td>
           <td>Azure (US regions)</td>
         </tr>
         <tr>
@@ -98,6 +104,22 @@
           <td>If you connect Salesforce or HubSpot, we pull account name
           and deal stage. No bulk sync.</td>
           <td>Azure (US regions), via Nango</td>
+        </tr>
+        <tr>
+          <td>Phone Calls</td>
+          <td>If you place a call through wingscript's dialing feature,
+          the number you dial, call status, and call audio pass through
+          Twilio, our telephony carrier, to connect the call and enable
+          real-time transcription.</td>
+          <td>Azure (US regions); Twilio</td>
+        </tr>
+        <tr>
+          <td>Dialpad Call Events</td>
+          <td>If your organization connects Dialpad, we receive
+          call-state events (that a call has started or ended, and which
+          rep it belongs to) so wingscript can prepare your session
+          automatically. No call audio or content comes from Dialpad.</td>
+          <td>Azure (US regions)</td>
         </tr>
         <tr>
           <td>Cue Interactions</td>
@@ -140,15 +162,74 @@
           <td>Azure (US regions), via Apollo.io</td>
         </tr>
         <tr>
+          <td>Billing</td>
+          <td>If you purchase a paid plan, payment is processed by
+          Stripe. Your card details are collected directly by Stripe and
+          never touch our servers. We store your plan, subscription
+          status, and seat counts.</td>
+          <td>Stripe; Azure (US regions)</td>
+        </tr>
+        <tr>
+          <td>Usage Analytics</td>
+          <td>Content-free product events (for example, "session
+          started" or "feature used") tied to your account identity
+          (name, email, organization, plan tier), forwarded to Mixpanel
+          so we can understand how wingscript is used. Conversation
+          content — transcripts, cue text, chat messages, document text —
+          is never included in analytics events; this is enforced in our
+          ingestion code.</td>
+          <td>Azure (US regions); Mixpanel</td>
+        </tr>
+        <tr>
           <td>Push Subscriptions</td>
           <td>Web Push endpoint stored to deliver calendar update
           notifications. No content data is included in push payloads.</td>
           <td>Azure (US regions)</td>
         </tr>
+        <tr>
+          <td>Website Forms</td>
+          <td>If you request a demo on wingscript.com, the name, work
+          email, and team size you enter are sent to our servers and
+          delivered to our inbox as an email via Resend, our email
+          delivery provider. Demo requests are not stored in our
+          database — the delivered email is the only copy.</td>
+          <td>Azure (US regions); Resend</td>
+        </tr>
+        <tr>
+          <td>Server Logs</td>
+          <td>Standard request logs (IP address, request metadata,
+          timestamps) generated when you use our applications or
+          website, kept for security and operations.</td>
+          <td>Azure (US regions)</td>
+        </tr>
       </tbody>
     </table>
 
-    <h2>3. Chrome Extension Permissions</h2>
+    <h2>3. Other People on Your Calls</h2>
+    <p>wingscript transcribes conversations, so the words of the people
+    you talk to are part of your transcripts. Those people are not
+    wingscript users and do not see this policy, so this allocation of
+    responsibility matters:</p>
+    <ul>
+      <li><strong>You are responsible for consent.</strong> Laws on
+      recording and transcribing conversations vary; some jurisdictions
+      — including California — require the consent of all parties. By
+      using wingscript you confirm that you have obtained any consent
+      required by the laws that apply to your conversations.</li>
+      <li><strong>We process other participants' data on your
+      behalf</strong> — solely to provide the service to you (real-time
+      cues, transcripts, summaries, coaching). We do not use it for any
+      independent purpose, and we never contact the other participants.</li>
+      <li><strong>Deletion cascades.</strong> When you delete a session
+      or your account, the other participants' transcript data in it is
+      deleted too.</li>
+      <li>If you were a participant in a conversation transcribed by a
+      wingscript user and want that data removed, contact
+      <a href="mailto:support@wingscript.com">support@wingscript.com</a>
+      and we will help.</li>
+    </ul>
+
+    <h2>4. Chrome Extension Permissions</h2>
 
     <table>
       <thead>
@@ -169,22 +250,38 @@
       </tbody>
     </table>
 
-    <h2>4. How We Use Your Data</h2>
+    <h2>5. How We Use Your Data</h2>
     <ul>
       <li>Generate real-time cue cards during your conversations</li>
       <li>Build a learning profile to improve coaching over time</li>
       <li>Provide session summaries and post-call analysis</li>
       <li>Authenticate you and manage your account</li>
+      <li>Process payments and manage subscriptions</li>
+      <li>Understand product usage and improve the service (content-free
+      analytics only)</li>
+      <li>Secure the service and prevent abuse</li>
     </ul>
-    <p>We do not sell your data. We do not use your data to train AI models.</p>
+    <p>We do not sell your data. We do not use your data for advertising.
+    We do not train AI models on your data.</p>
 
-    <h2>5. Third-Party Services</h2>
+    <h2>6. Third-Party Services</h2>
     <ul>
+      <li><strong>Deepgram</strong> — real-time speech-to-text. Session
+      audio is streamed to Deepgram for transcription and is not
+      retained by us afterward.</li>
       <li><strong>Azure OpenAI</strong> — processes transcripts for
       reasoning and cue generation. Data is processed in the US and is
       not used by Microsoft to train models.</li>
-      <li><strong>Nango</strong> — OAuth proxy for CRM connectors
-      (Salesforce, HubSpot). Nango does not store your CRM data.</li>
+      <li><strong>Twilio</strong> — telephony carrier for calls placed
+      through wingscript's dialing feature.</li>
+      <li><strong>Stripe</strong> — payment processing. Stripe collects
+      your payment details directly; we never see full card numbers.</li>
+      <li><strong>Mixpanel</strong> — product usage analytics. Receives
+      content-free usage events and account profile information, never
+      conversation content.</li>
+      <li><strong>Nango</strong> — OAuth proxy for connectors
+      (Salesforce, HubSpot, Google Drive, Notion, Dialpad). Nango does
+      not store your connected-service data.</li>
       <li><strong>Google APIs</strong> — authentication, read-only
       calendar access, and exporting your call data to a Google Sheet in
       your Drive (via the <code>drive.file</code> scope, limited to files
@@ -195,54 +292,133 @@
       knowledge base content used in meeting preparation.</li>
       <li><strong>Notion</strong> — document sync via Nango for
       knowledge base content used in meeting preparation.</li>
+      <li><strong>Resend</strong> — email delivery. Sends demo-request
+      notifications from our website to our inbox.</li>
     </ul>
+    <p>These providers are permitted to use your data only to provide
+    their services to us.</p>
 
-    <h2>6. Data Storage & Retention</h2>
+    <h2>7. Other Disclosures</h2>
     <ul>
-      <li>Data is stored in Azure PostgreSQL in US regions.</li>
+      <li><strong>Legal requirements.</strong> We may disclose Personal
+      Data if required to do so by law — for example in response to a
+      subpoena, court order, or other lawful request — or where we
+      believe in good faith that disclosure is necessary to protect our
+      rights, your safety, or the safety of others.</li>
+      <li><strong>Business transfers.</strong> If wingscript is involved
+      in a merger, acquisition, or sale of assets, Personal Data may be
+      transferred as part of that transaction. This policy will continue
+      to apply, and we will notify you of any change in ownership or in
+      how your Personal Data is handled.</li>
+    </ul>
+    <p>We have never sold personal information, and we do not share
+    personal information for cross-context behavioral advertising.</p>
+
+    <h2>8. Data Storage &amp; Retention</h2>
+    <ul>
+      <li>Data is stored in Azure PostgreSQL in US regions and encrypted
+      at rest.</li>
       <li>Session transcripts and cue history are retained for your
       account history. You can delete them at any time.</li>
       <li>Calendar data is cached temporarily and refreshed periodically.</li>
-      <li>Audio is never stored — it is transcribed on-device and
-      discarded immediately.</li>
+      <li>Audio is never stored — it exists only in transient buffers
+      during transcription and is deleted immediately afterward.</li>
+      <li>When you delete your account, your Personal Data is removed
+      from our production systems. Content-free usage records are
+      unlinked from your identity rather than deleted. Residual copies
+      in encrypted backups expire on a fixed rotation schedule.</li>
     </ul>
 
-    <h2>7. Your Rights</h2>
+    <h2>9. Your Rights</h2>
     <h3>All Users</h3>
     <ul>
       <li><strong>Access:</strong> Request a copy of your data.</li>
+      <li><strong>Correction:</strong> Request that inaccurate data be
+      corrected.</li>
       <li><strong>Deletion:</strong> Request deletion of your account and
       all associated data.</li>
       <li><strong>Portability:</strong> Export your session history.</li>
     </ul>
+    <p>To exercise any of these rights, email
+    <a href="mailto:support@wingscript.com">support@wingscript.com</a>.
+    We will verify your request using the email associated with your
+    account and respond within 45 days. You may use an authorized agent
+    to submit a request on your behalf.</p>
 
-    <h3>California Residents (CCPA)</h3>
-    <p>You have the right to know what personal information we collect,
-    request deletion, and opt out of the sale of personal information.
-    We do not sell personal information.</p>
+    <h3>California Residents (CCPA/CPRA)</h3>
+    <ul>
+      <li><strong>Right to know</strong> what personal information we
+      collect, where it comes from, and how it is used and disclosed —
+      described in this policy, and available on request.</li>
+      <li><strong>Right to correct</strong> inaccurate personal
+      information.</li>
+      <li><strong>Right to delete</strong> personal information, subject
+      to legal exceptions.</li>
+      <li><strong>Right to opt out of sale or sharing:</strong> we do
+      not sell personal information and do not share it for
+      cross-context behavioral advertising, so there is nothing to opt
+      out of.</li>
+      <li><strong>Right to limit use of sensitive personal
+      information:</strong> we use sensitive information (such as the
+      contents of your conversations) only to provide the service you
+      requested, which is a permitted purpose that does not require a
+      limit option.</li>
+      <li><strong>Non-discrimination:</strong> we will never deny you
+      service, charge you a different price, or provide a different
+      level of quality because you exercised your privacy rights.</li>
+    </ul>
 
     <h3>EU/EEA Residents (GDPR)</h3>
     <p>You have the right to access, rectify, erase, restrict processing,
-    and port your data. Our legal basis for processing is legitimate
-    interest (providing the service you signed up for) and consent
-    (where required).</p>
+    object to processing, and port your data. Our legal bases for
+    processing are: performance of our contract with you (providing the
+    service you signed up for), our legitimate interests (securing and
+    improving the service), and your consent (optional features such as
+    connectors, which you can withdraw at any time by disconnecting
+    them).</p>
 
-    <h2>8. Security</h2>
+    <h2>10. Do Not Track and Global Privacy Control</h2>
+    <p>Some browsers can send "Do Not Track" or Global Privacy Control
+    signals. Because we do not sell or share personal information and do
+    not serve targeted advertising, there is no sale or tracking to opt
+    out of, and we do not change our data collection in response to
+    these signals.</p>
+
+    <h2>11. Cookies &amp; Local Storage</h2>
     <ul>
-      <li>All data in transit is encrypted via TLS.</li>
-      <li>Audio never leaves your device — privacy by design.</li>
-      <li>Secrets are managed via Azure Key Vault with managed
-      identity access.</li>
-      <li>Authentication uses self-signed HS256 JWTs with short
-      expiration.</li>
+      <li>Our applications use browser storage for essential purposes
+      only: keeping you signed in and saving your settings.</li>
+      <li>We do not use advertising or cross-site tracking cookies.</li>
+      <li>Our website loads fonts from Google Fonts; like any web
+      request, this discloses your IP address to Google.</li>
     </ul>
 
-    <h2>9. Changes to This Policy</h2>
+    <h2>12. Security</h2>
+    <ul>
+      <li>All data in transit is encrypted via TLS; data at rest is
+      encrypted.</li>
+      <li>Audio is never stored — it is transcribed in real time and
+      discarded.</li>
+      <li>Secrets are managed via Azure Key Vault with managed
+      identity access.</li>
+      <li>Sessions use short-lived, signed authentication tokens.</li>
+      <li>If a security breach affects your Personal Data, we will
+      notify you as required by applicable law, including California
+      Civil Code &sect;1798.82.</li>
+    </ul>
+
+    <h2>13. International Users</h2>
+    <p>wingscript is operated from the United States, and data is stored
+    and processed in US regions. If you use wingscript from outside the
+    US, you understand that your data will be transferred to and
+    processed in the United States.</p>
+
+    <h2>14. Changes to This Policy</h2>
     <p>We will update this page when our practices change. The effective
     date at the top reflects the most recent revision. Material changes
     will be communicated via email to registered users.</p>
 
-    <h2>10. Google API Limited Use Disclosure</h2>
+    <h2>15. Google API Limited Use Disclosure</h2>
     <p>wingscript's use and transfer to any other app of information received
     from Google APIs will adhere to the
     <a href="https://developers.google.com/terms/api-services-user-data-policy">Google
@@ -267,7 +443,7 @@
     at your request, investigating security incidents, or complying
     with legal obligations.</p>
 
-    <h2>11. Children's Privacy</h2>
+    <h2>16. Children's Privacy</h2>
     <p>wingscript is intended for use by business professionals. We do not
     knowingly collect Personal Data from children under the age of 18.
     If you are under 18, do not use wingscript or provide any information
@@ -277,8 +453,9 @@
     a child under 18, please contact us at
     <a href="mailto:support@wingscript.com">support@wingscript.com</a>.</p>
 
-    <h2>12. Contact</h2>
-    <p>For privacy questions or data requests, contact us at
+    <h2>17. Contact</h2>
+    <p>For privacy questions or data requests — including California and
+    GDPR requests — contact us at
     <a href="mailto:support@wingscript.com">support@wingscript.com</a>.</p>
   </div>
 </body>
