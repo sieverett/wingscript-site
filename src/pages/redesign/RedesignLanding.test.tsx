@@ -110,7 +110,7 @@ describe('CTA destinations', () => {
 });
 
 describe('demo request form', () => {
-  const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
+  const FORM_ENDPOINT = 'https://api.wingscript.com/api/demo-request';
 
   const openForm = () =>
     fireEvent.click(screen.getByRole('button', { name: /book a team demo/i }));
@@ -146,7 +146,7 @@ describe('demo request form', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  test('submitting sends the request to the form service and thanks the visitor', async () => {
+  test('submitting sends JSON to the wingscript API and thanks the visitor', async () => {
     const fetchMock = jest.fn().mockResolvedValue({ ok: true });
     (global as { fetch?: unknown }).fetch = fetchMock;
     openForm();
@@ -156,10 +156,23 @@ describe('demo request form', () => {
     const [url, opts] = fetchMock.mock.calls[0];
     expect(url).toBe(FORM_ENDPOINT);
     expect(opts.method).toBe('POST');
-    const body = opts.body as FormData;
-    expect(body.get('name')).toBe('Jane Rep');
-    expect(body.get('email')).toBe('jane@acme.com');
-    expect(body.get('team_size')).toBe('6–20');
+    expect(opts.headers['Content-Type']).toBe('application/json');
+    expect(JSON.parse(opts.body)).toEqual({
+      name: 'Jane Rep',
+      email: 'jane@acme.com',
+      team_size: '6–20',
+      website: '',
+    });
+  });
+
+  test('the form carries an empty honeypot field humans never see', () => {
+    openForm();
+    const dialog = screen.getByRole('dialog');
+    const honeypot = dialog.querySelector('input[name="website"]') as HTMLInputElement;
+    expect(honeypot).not.toBeNull();
+    expect(honeypot.value).toBe('');
+    expect(honeypot).toHaveAttribute('aria-hidden', 'true');
+    expect(honeypot.tabIndex).toBe(-1);
   });
 
   test('a failed submit offers the email fallback', async () => {

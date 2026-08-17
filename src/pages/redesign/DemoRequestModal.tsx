@@ -1,14 +1,16 @@
 /* ============================================================
    Book-a-demo request form — modal over the landing page.
-   Submits to Formspree (forwards to hello@wingscript.com); the
-   team-pilot mailto survives as the error-path fallback.
+   Submits to the wingscript backend (spec 917), which emails the
+   lead to hello@wingscript.com with reply-to = the visitor; the
+   team-pilot mailto survives as the error-path fallback. The
+   hidden `website` field is the backend's honeypot — bots fill
+   it, the API swallows those silently.
    ============================================================ */
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from './components';
 
-/* Formspree endpoint — claimed by the owner via the /claim flow. */
-export const DEMO_FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
+export const DEMO_FORM_ENDPOINT = 'https://api.wingscript.com/api/demo-request';
 const FALLBACK_MAILTO = 'mailto:hello@wingscript.com?subject=wingscript%20team%20pilot';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
@@ -44,13 +46,13 @@ export const DemoRequestModal: React.FC<{ open: boolean; onClose: () => void }> 
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const body = new FormData(e.currentTarget);
+    const fields = Object.fromEntries(new FormData(e.currentTarget));
     setStatus('submitting');
     try {
       const res = await fetch(DEMO_FORM_ENDPOINT, {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fields),
       });
       setStatus(res.ok ? 'success' : 'error');
     } catch {
@@ -129,6 +131,17 @@ export const DemoRequestModal: React.FC<{ open: boolean; onClose: () => void }> 
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: 14, lineHeight: 1.55, color: 'var(--ink-500)', margin: '0 0 20px' }}>
               A short walkthrough on your team's real calls — no deck, no commitment.
             </p>
+
+            {/* Honeypot — offscreen, unlabeled, skipped by keyboard and AT.
+                The backend silently drops any submission that fills it. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: -9999, top: 'auto', width: 1, height: 1, opacity: 0 }}
+            />
 
             <div style={{ marginBottom: 14 }}>
               <label htmlFor="wg-demo-name" style={labelStyle}>Name</label>
