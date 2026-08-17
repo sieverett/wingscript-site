@@ -160,6 +160,25 @@
 @keyframes wgCue  { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
 @keyframes wgGlow { from { opacity: .5; } to { opacity: .85; } }
 
+/* ── Form fields (demo-request modal) ── */
+.wg-redesign .wg-field {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  color: var(--ink-900);
+  background: #fff;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.wg-redesign .wg-field:focus {
+  outline: none;
+  border-color: var(--sky-400);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wg-redesign [style*="animation"] { animation: none !important; }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import RedesignLanding from './RedesignLanding';
 
 const CWS =
@@ -77,15 +77,11 @@ describe('CTA destinations', () => {
     );
   });
 
-  test('demo CTAs open the team-pilot email', () => {
-    expect(screen.getByRole('link', { name: /book a demo/i })).toHaveAttribute(
-      'href',
-      PILOT_MAILTO
-    );
-    expect(screen.getByRole('link', { name: /book a team demo/i })).toHaveAttribute(
-      'href',
-      PILOT_MAILTO
-    );
+  test('demo CTAs are buttons that open the request form, not mailto links', () => {
+    expect(screen.queryByRole('link', { name: /book a demo/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /book a team demo/i })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /book a demo/i }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
   test('footer links reach the legal pages and monitored mailboxes', () => {
@@ -110,5 +106,85 @@ describe('CTA destinations', () => {
       .filter((a) => (a.getAttribute('href') || '').includes('chromewebstore.google.com'));
     expect(storeLinks.length).toBeGreaterThan(0);
     storeLinks.forEach((a) => expect(a).toHaveAttribute('href', CWS));
+  });
+});
+
+describe('demo request form', () => {
+  const FORM_ENDPOINT = 'https://api.wingscript.com/api/demo-request';
+
+  const openForm = () =>
+    fireEvent.click(screen.getByRole('button', { name: /book a team demo/i }));
+
+  const fillAndSubmit = () => {
+    fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Jane Rep' } });
+    fireEvent.change(screen.getByLabelText('Work email'), {
+      target: { value: 'jane@acme.com' },
+    });
+    fireEvent.change(screen.getByLabelText('Team size'), { target: { value: '6–20' } });
+    fireEvent.click(screen.getByRole('button', { name: /request a demo/i }));
+  };
+
+  beforeEach(() => {
+    render(<RedesignLanding />);
+  });
+
+  afterEach(() => {
+    delete (global as { fetch?: unknown }).fetch;
+  });
+
+  test('the closer demo CTA opens a dialog with the three fields', () => {
+    openForm();
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByLabelText('Name')).toBeInTheDocument();
+    expect(screen.getByLabelText('Work email')).toBeInTheDocument();
+    expect(screen.getByLabelText('Team size')).toBeInTheDocument();
+  });
+
+  test('escape closes the dialog', () => {
+    openForm();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  test('submitting sends JSON to the wingscript API and thanks the visitor', async () => {
+    const fetchMock = jest.fn().mockResolvedValue({ ok: true });
+    (global as { fetch?: unknown }).fetch = fetchMock;
+    openForm();
+    fillAndSubmit();
+    await screen.findByText(/thanks — we'll be in touch/i);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const [url, opts] = fetchMock.mock.calls[0];
+    expect(url).toBe(FORM_ENDPOINT);
+    expect(opts.method).toBe('POST');
+    expect(opts.headers['Content-Type']).toBe('application/json');
+    expect(JSON.parse(opts.body)).toEqual({
+      name: 'Jane Rep',
+      email: 'jane@acme.com',
+      team_size: '6–20',
+      website: '',
+    });
+  });
+
+  test('the form carries an empty honeypot field humans never see', () => {
+    openForm();
+    const dialog = screen.getByRole('dialog');
+    const honeypot = dialog.querySelector('input[name="website"]') as HTMLInputElement;
+    expect(honeypot).not.toBeNull();
+    expect(honeypot.value).toBe('');
+    expect(honeypot).toHaveAttribute('aria-hidden', 'true');
+    expect(honeypot.tabIndex).toBe(-1);
+  });
+
+  test('a failed submit offers the email fallback', async () => {
+    (global as { fetch?: unknown }).fetch = jest
+      .fn()
+      .mockRejectedValue(new Error('network down'));
+    openForm();
+    fillAndSubmit();
+    await screen.findByText(/something went wrong/i);
+    expect(screen.getByRole('link', { name: /email us instead/i })).toHaveAttribute(
+      'href',
+      PILOT_MAILTO
+    );
   });
 });

@@ -51,6 +51,7 @@ interface ButtonProps {
   href?: string;
   target?: string;
   rel?: string;
+  type?: 'button' | 'submit';
   onClick?: React.MouseEventHandler;
   style?: React.CSSProperties;
   ariaLabel?: string;
@@ -64,7 +65,7 @@ const BTN_SIZES: Record<ButtonSize, { padding: string; fontSize: number; radius:
 
 export const Button: React.FC<ButtonProps> = ({
   children, variant = 'primary', size = 'md', disabled = false,
-  href, target, rel, onClick, style = {}, ariaLabel,
+  href, target, rel, type = 'button', onClick, style = {}, ariaLabel,
 }) => {
   const [hover, setHover] = useState(false);
   const [active, setActive] = useState(false);
@@ -119,7 +120,7 @@ export const Button: React.FC<ButtonProps> = ({
     );
   }
   return (
-    <button type="button" disabled={disabled} onClick={onClick} aria-label={ariaLabel} style={composed} {...handlers}>
+    <button type={type} disabled={disabled} onClick={onClick} aria-label={ariaLabel} style={composed} {...handlers}>
       {children}
     </button>
   );
