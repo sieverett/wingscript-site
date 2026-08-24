@@ -91,7 +91,7 @@ export const RedesignLanding: React.FC = () => {
             <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--ink-500)', margin: '0 0 22px' }}>Ramping in your first year? Install it yourself and be the rep who always has the answer ready — no admin, no approval.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 26 }}>
               <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="feather" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Live cues from your playbooks & CRM, mid-call</div>
-              <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="dumbbell" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Practice new pitches in the dojo before they count</div>
+              <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="plane-takeoff" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Practice new pitches in the flight simulator before they count</div>
               <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="clipboard-check" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />A scored debrief after every call</div>
             </div>
             <div style={{ marginTop: 'auto' }}>
@@ -112,7 +112,7 @@ export const RedesignLanding: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 26 }}>
               <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="check" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Everything reps get, across every seat</div>
               <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="activity" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Live session monitoring + per-rep dashboards</div>
-              <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="sliders-horizontal" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Assign dojo drills; score to your methodology</div>
+              <div style={{ display: 'flex', gap: 10, fontSize: 14, color: 'var(--ink-700)', lineHeight: 1.5 }}><Icon name="sliders-horizontal" style={{ width: 17, height: 17, color: 'var(--violet-500)', flex: 'none', marginTop: 2 }} />Assign practice flights; score to your methodology</div>
             </div>
             <div style={{ marginTop: 'auto' }}>
               {/* Diverges from the design source ("$39 /seat/mo") on purpose: with role
@@ -152,7 +152,7 @@ export const RedesignLanding: React.FC = () => {
           </div>
           <div className="wg-ramp-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14 }}>
             {[
-              { icon: 'dumbbell', step: '01 · PRACTICE', h: 'The dojo', p: 'Rehearse the new pitch against a roleplay before it costs you a live deal.' },
+              { icon: 'plane-takeoff', step: '01 · PRACTICE', h: 'The flight simulator', p: 'Rehearse the new pitch against an AI prospect before it costs you a live deal.' },
               { icon: 'feather', step: '02 · CUE', h: 'Live in the call', p: 'One grounded idea appears in the moment you need it, citing its source.' },
               { icon: 'clipboard-check', step: '03 · DEBRIEF', h: 'Scored after', p: 'Every call graded against your methodology — MEDDIC, SPIN, or your own.' },
               { icon: 'users', step: '04 · COACH', h: 'Manager sees it', p: 'Per-rep dashboards show where each new hire is stuck — same day, not next quarter.' },
@@ -202,7 +202,7 @@ export const RedesignLanding: React.FC = () => {
             <div style={{ background: '#fff', border: '1px solid var(--border-hairline)', borderRadius: 14, padding: 24 }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, marginBottom: 4 }}>Free</div>
               <div style={{ marginBottom: 12 }}><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26 }}>$0</span></div>
-              <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink-500)', margin: 0 }}>Capped live cues + the dojo. Enough to feel the moment.</p>
+              <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink-500)', margin: 0 }}>Capped live cues + the flight simulator. Enough to feel the moment.</p>
             </div>
             <div style={{ background: '#fff', border: '1px solid var(--border-hairline)', borderRadius: 14, padding: 24 }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, marginBottom: 4 }}>Pro</div>
