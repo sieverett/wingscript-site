@@ -3,14 +3,9 @@
   "name": "wingscript",
   "icons": [
     {
-      "src": "cuedesk-favicon.svg",
-      "type": "image/svg+xml",
-      "sizes": "any"
-    },
-    {
-      "src": "favicon.ico",
-      "sizes": "16x16 32x32 48x48",
-      "type": "image/x-icon"
+      "src": "favicon-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
     },
     {
       "src": "logo192.png",
