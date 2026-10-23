@@ -18,9 +18,19 @@ describe('landing copy — 2026-08-15 handoff rev', () => {
     ).toBeInTheDocument();
   });
 
-  test('pricing is presented as pre-launch', () => {
-    expect(screen.getByText('Pre-launch · pricing not live yet')).toBeInTheDocument();
-    expect(screen.getByText('Pricing at launch.')).toBeInTheDocument();
+  test('pricing is presented as live, not pre-launch', () => {
+    // converse-ai spec 1432: the badge is gone — a public trial promotion
+    // cannot sit under a notice saying pricing is not live.
+    expect(screen.queryByText('Pre-launch · pricing not live yet')).not.toBeInTheDocument();
+    expect(screen.queryByText('Pricing at launch.')).not.toBeInTheDocument();
+    expect(screen.getByText('Pricing.')).toBeInTheDocument();
+  });
+
+  test('the team CTA states no trial length until the live offer resolves', () => {
+    // This is what the prerendered HTML and the first paint contain.
+    const cta = screen.getByRole('link', { name: /start a team trial/i });
+    expect(cta).toBeInTheDocument();
+    expect(cta.textContent).not.toMatch(/\d/);
   });
 
   test('pricing subhead explains role-priced team seats and the minute rate', () => {
@@ -186,5 +196,71 @@ describe('demo request form', () => {
       'href',
       PILOT_MAILTO
     );
+  });
+});
+
+describe('the live trial offer (converse-ai spec 1432)', () => {
+  const realFetch = global.fetch;
+  afterEach(() => {
+    global.fetch = realFetch;
+  });
+
+  function mockOffer(body: Record<string, unknown>) {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => body,
+    }) as unknown as typeof fetch;
+  }
+
+  test('the team CTA offers the length the campaign is actually granting', async () => {
+    mockOffer({
+      trial_days: 30,
+      label: '30-day team trial',
+      campaign_slug: 'autumn-30',
+      campaign_ends_at: '2026-11-30T00:00:00Z',
+    });
+
+    render(<RedesignLanding />);
+
+    const cta = await screen.findByRole('link', { name: /start a 30-day team trial/i });
+    expect(cta).toHaveAttribute('href', TEAM_TRIAL);
+  });
+
+  test('a running campaign names itself and its end date above the prices', async () => {
+    mockOffer({
+      trial_days: 30,
+      label: '30-day team trial',
+      campaign_slug: 'autumn-30',
+      campaign_ends_at: '2026-11-30T00:00:00Z',
+    });
+
+    render(<RedesignLanding />);
+
+    expect(await screen.findByText(/30-day team trial · through/i)).toBeInTheDocument();
+  });
+
+  test('no campaign means no promotion line at all', async () => {
+    mockOffer({
+      trial_days: 14,
+      label: null,
+      campaign_slug: null,
+      campaign_ends_at: null,
+    });
+
+    render(<RedesignLanding />);
+
+    const cta = await screen.findByRole('link', { name: /start a 14-day team trial/i });
+    expect(cta).toBeInTheDocument();
+    expect(screen.queryByText(/through/i)).not.toBeInTheDocument();
+  });
+
+  test('an unreachable offer leaves the static copy standing', async () => {
+    global.fetch = jest.fn().mockRejectedValue(new Error('offline')) as unknown as typeof fetch;
+
+    render(<RedesignLanding />);
+
+    const cta = await screen.findByRole('link', { name: /start a team trial/i });
+    expect(cta.textContent).not.toMatch(/\d/);
+    expect(screen.getByText('Pricing.')).toBeInTheDocument();
   });
 });

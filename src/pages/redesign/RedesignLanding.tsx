@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import './redesign-tokens.css';
 import { Button, Tag, LiveDot, CueCard, Icon, useLucide } from './components';
 import { DemoRequestModal } from './DemoRequestModal';
+import { useTrialOffer } from './useTrialOffer';
 
 /* ── CTA destinations (single source of truth) ──────────────
    All five "Add to Chrome"/"Start free"/"See it live" CTAs point
@@ -25,6 +26,17 @@ const eyebrow: React.CSSProperties = {
 export const RedesignLanding: React.FC = () => {
   useLucide();
   const [demoOpen, setDemoOpen] = useState(false);
+  /* converse-ai spec 1432: the trial length comes from whatever campaign is
+     live, so it is never written into this page. Null (prerender, first
+     paint, offline) falls back to copy that states no number. */
+  const offer = useTrialOffer();
+  const trialCta = offer
+    ? `Start a ${offer.trialDays}-day team trial  \u2192`
+    : 'Start a team trial  \u2192';
+  const campaignNote =
+    offer && offer.label && offer.campaignEndsAt
+      ? `${offer.label} \u00b7 through ${new Date(offer.campaignEndsAt).toLocaleDateString(undefined, { month: 'long', day: 'numeric' })}`
+      : null;
 
   return (
     <div className="wg-redesign wg-lp" id="top">
@@ -119,7 +131,7 @@ export const RedesignLanding: React.FC = () => {
                   pricing, a flat per-seat rate here misreads as every seat costing $39. */}
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 14 }}><span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22 }}>$39</span><span style={{ fontSize: 13.5, color: 'var(--ink-500)' }}>/manager seat · $19/member seat · no platform fee</span></div>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                <Button variant="primary" size="md" href={TEAM_TRIAL} {...ext}>Start a team trial  →</Button>
+                <Button variant="primary" size="md" href={TEAM_TRIAL} {...ext}>{trialCta}</Button>
                 <Button variant="ghost" size="md" onClick={() => setDemoOpen(true)}>Book a demo</Button>
               </div>
             </div>
@@ -191,11 +203,18 @@ export const RedesignLanding: React.FC = () => {
       <div id="pricing" className="wg-section" style={{ padding: '64px 48px', background: 'var(--paper)', borderTop: '1px solid var(--border-hairline)' }}>
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 34 }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 12px', borderRadius: 999, background: 'var(--violet-50)', border: '1px solid var(--violet-100)', marginBottom: 14 }}>
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--violet-500)' }} />
-              <span style={{ font: '600 10.5px/1 var(--font-sans)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--violet-500)' }}>Pre-launch · pricing not live yet</span>
-            </div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 28, lineHeight: 1.12, letterSpacing: '-.025em', margin: '0 0 8px' }}>Pricing at launch.</h2>
+            {/* The pre-launch badge is gone (converse-ai spec 1432, owner
+                decision): these are the prices we charge, and a public trial
+                promotion cannot sit under a notice saying pricing is not
+                live. When a campaign IS running, its name and end date take
+                that slot instead. */}
+            {campaignNote && (
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 12px', borderRadius: 999, background: 'var(--violet-50)', border: '1px solid var(--violet-100)', marginBottom: 14 }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--violet-500)' }} />
+                <span style={{ font: '600 10.5px/1 var(--font-sans)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--violet-500)' }}>{campaignNote}</span>
+              </div>
+            )}
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 28, lineHeight: 1.12, letterSpacing: '-.025em', margin: '0 0 8px' }}>Pricing.</h2>
             <p style={{ fontSize: 14.5, color: 'var(--ink-500)', margin: '0 auto', maxWidth: 620 }}>Free for any rep to start. When you ramp the team, you pay per role — $39 a manager seat, $19 a member seat. No platform fee, no annual lock-in. Call minutes bill separately at ~$0.10/min.</p>
           </div>
           <div className="wg-pricing-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14 }}>
