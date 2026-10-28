@@ -7,16 +7,16 @@
 
 import React, { useState } from 'react';
 import './redesign-tokens.css';
+import { SiteNav, SiteFooter, CWS, ext } from './SiteChrome';
 import { Button, Tag, LiveDot, CueCard, Icon, useLucide } from './components';
 import { DemoRequestModal } from './DemoRequestModal';
 
 /* ── CTA destinations (single source of truth) ──────────────
    All five "Add to Chrome"/"Start free"/"See it live" CTAs point
-   at the same Chrome Web Store listing (a product decision from
-   the handoff, not a bug). Demo CTAs open the request form. */
-const CWS = 'https://chromewebstore.google.com/detail/wingscript/mnfaookgldbingbnhalfedkajgagnijp';
+   at the same Chrome Web Store listing (CWS, in SiteChrome.tsx —
+   a product decision from the handoff, not a bug). Demo CTAs open
+   the request form. */
 const TEAM_TRIAL = 'https://app.wingscript.com/admin?create=1'; // self-serve org create → auto TEAM trial
-const ext = { target: '_blank', rel: 'noopener noreferrer' } as const;
 
 const eyebrow: React.CSSProperties = {
   font: '600 11px/1 var(--font-sans)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--violet-500)',
@@ -30,18 +30,7 @@ export const RedesignLanding: React.FC = () => {
     <div className="wg-redesign wg-lp" id="top">
 
       {/* ── NAV ── */}
-      <div className="wg-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 48px', borderBottom: '1px solid var(--border-hairline)', position: 'sticky', top: 0, background: 'rgba(250,249,252,.82)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', zIndex: 5 }}>
-        <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'inherit' }}>
-          <img src="/wingscript-mark-violet.png" alt="" style={{ height: 26, width: 'auto', display: 'block' }} />
-          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 19, letterSpacing: '-.02em' }}>wingscript</span>
-        </a>
-        <div className="wg-nav-links" style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-          <a href="#teams" style={{ fontSize: 14, color: 'var(--ink-700)' }}>for teams</a>
-          <a href="#product" style={{ fontSize: 14, color: 'var(--ink-700)' }}>product</a>
-          <a href="#pricing" style={{ fontSize: 14, color: 'var(--ink-700)' }}>pricing</a>
-          <Button variant="primary" size="md" href={CWS} {...ext} style={{ minWidth: 130 }}>Start free  →</Button>
-        </div>
-      </div>
+      <SiteNav />
 
       {/* ── HERO (two-column: copy left, live demo right) ── */}
       <div className="wg-section" style={{ padding: '84px 48px 56px', position: 'relative', overflow: 'hidden' }}>
@@ -240,20 +229,7 @@ export const RedesignLanding: React.FC = () => {
       </div>
 
       {/* ── FOOTER ── */}
-      <div className="wg-lp--dark" style={{ padding: '36px 48px', background: 'var(--ink-900)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/wingscript-mark-white.png" alt="" style={{ height: 22, width: 'auto', display: 'block' }} />
-          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, color: '#fff' }}>wingscript</span>
-        </div>
-        <div style={{ display: 'flex', gap: 22, fontSize: 13.5 }}>
-          <a href="#product">product</a>
-          <a href="#pricing">pricing</a>
-          <a href="/privacy">privacy</a>
-          <a href="mailto:support@wingscript.com">security</a>
-          <a href="mailto:hello@wingscript.com">contact</a>
-          <a href="/terms">terms</a>
-        </div>
-      </div>
+      <SiteFooter />
 
       <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
 

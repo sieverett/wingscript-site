@@ -155,6 +155,11 @@
 .wg-redesign .wg-closer-btn--ghost { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.55); }
 .wg-redesign .wg-closer-btn--ghost:hover { background: rgba(255,255,255,.24); color: #fff; }
 
+/* Resource cards (/resources) are whole-card anchors: keep body text ink,
+   not link violet, and lift on hover like the DS card hover. */
+.wg-redesign .wg-resource-card { color: var(--ink-900); transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
+.wg-redesign .wg-resource-card:hover { color: var(--ink-900); border-color: var(--violet-100); box-shadow: var(--elevation-md); }
+
 /* One-time entrances (names namespaced to the redesign) */
 @keyframes wgLift { from { opacity: 0; transform: translateY(22px) rotate(-3deg); } to { opacity: .05; transform: none; } }
 @keyframes wgCue  { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
@@ -191,11 +196,13 @@
   .wg-redesign .wg-ramp-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .wg-redesign .wg-compare-grid { grid-template-columns: 1fr !important; }
   .wg-redesign .wg-pricing-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .wg-redesign .wg-resource-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 620px) {
   /* Hide the section anchors but keep the primary "Start free" CTA reachable */
-  .wg-redesign .wg-nav-links a[href^="#"] { display: none !important; }
+  .wg-redesign .wg-nav-links a[href*="#"] { display: none !important; }
   .wg-redesign .wg-ramp-grid { grid-template-columns: 1fr !important; }
   .wg-redesign .wg-pricing-grid { grid-template-columns: 1fr !important; }
+  .wg-redesign .wg-resource-grid { grid-template-columns: 1fr !important; }
   .wg-redesign .wg-section { padding-left: 22px !important; padding-right: 22px !important; }
 }

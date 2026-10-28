@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { RedesignLanding } from './pages/redesign/RedesignLanding';
+import { ResourcesPage } from './pages/resources/ResourcesPage';
 
 /** Route table, router-agnostic so tests can mount it in a MemoryRouter.
     index.tsx provides the BrowserRouter.
@@ -9,6 +10,7 @@ import { RedesignLanding } from './pages/redesign/RedesignLanding';
 export const App: React.FC = () => (
   <Routes>
     <Route path="/" element={<RedesignLanding />} />
+    <Route path="/resources" element={<ResourcesPage />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );

@@ -35,3 +35,19 @@ test('unknown paths fall back to the landing page', () => {
   renderAt('/does-not-exist');
   expectRedesignLanding();
 });
+
+test('/resources serves the resources page with the external article card', () => {
+  renderAt('/resources');
+  expect(screen.getByRole('heading', { level: 1, name: 'Resources' })).toBeInTheDocument();
+  const card = screen.getByRole('link', { name: /pipedrive vs\.? copper/i });
+  expect(card).toHaveAttribute(
+    'href',
+    'https://fractionaluplifts.com/knowledge-center/pipedrive-vs-copper-crm-comparison'
+  );
+  expect(card.getAttribute('rel')).toMatch(/\bnoopener\b/);
+});
+
+test('the landing footer links to the resources page', () => {
+  renderAt('/');
+  expect(screen.getByRole('link', { name: 'resources' })).toHaveAttribute('href', '/resources');
+});
