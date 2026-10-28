@@ -90,6 +90,10 @@ describe('CTA destinations', () => {
       '/privacy'
     );
     expect(screen.getByRole('link', { name: 'terms' })).toHaveAttribute('href', '/terms');
+    expect(screen.getByRole('link', { name: 'resources' })).toHaveAttribute(
+      'href',
+      '/resources'
+    );
     expect(screen.getByRole('link', { name: 'security' })).toHaveAttribute(
       'href',
       'mailto:support@wingscript.com'
