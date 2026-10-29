@@ -196,7 +196,7 @@ export const RedesignLanding: React.FC = () => {
               <span style={{ font: '600 10.5px/1 var(--font-sans)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--violet-500)' }}>Pre-launch · pricing not live yet</span>
             </div>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 28, lineHeight: 1.12, letterSpacing: '-.025em', margin: '0 0 8px' }}>Pricing at launch.</h2>
-            <p style={{ fontSize: 14.5, color: 'var(--ink-500)', margin: '0 auto', maxWidth: 620 }}>Free for any rep to start. When you ramp the team, you pay per role — $39 a manager seat, $19 a member seat. No platform fee, no annual lock-in. Call minutes bill separately at ~$0.10/min.</p>
+            <p style={{ fontSize: 14.5, color: 'var(--ink-500)', margin: '0 auto', maxWidth: 620 }}>Free for any rep to start. When you ramp the team, you pay per role — $39 a manager seat, $19 a member seat. No platform fee, no annual lock-in. Calls on your own meeting app or dialer are covered by the seat. Only the optional built-in dialer draws on prepaid minutes, at about $0.10/min.</p>
           </div>
           <div className="wg-pricing-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14 }}>
             <div style={{ background: '#fff', border: '1px solid var(--border-hairline)', borderRadius: 14, padding: 24 }}>
