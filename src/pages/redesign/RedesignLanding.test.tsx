@@ -23,11 +23,31 @@ describe('landing copy — 2026-08-15 handoff rev', () => {
     expect(screen.getByText('Pricing at launch.')).toBeInTheDocument();
   });
 
-  test('pricing subhead explains role-priced team seats and the minute rate', () => {
+  test('pricing subhead says the seat covers calls on the rep\'s own tools', () => {
+    // Anchor for the subhead: the seat prices are out of scope for this copy
+    // change and must survive edits to it.
     expect(
       screen.getByText(/\$39 a manager seat, \$19 a member seat/)
     ).toBeInTheDocument();
-    expect(screen.getByText(/~\$0\.10\/min/)).toBeInTheDocument();
+    expect(screen.getByText(/your own meeting app or dialer/)).toBeInTheDocument();
+    expect(screen.getByText(/covered by the seat/)).toBeInTheDocument();
+    expect(screen.queryByText(/Call minutes bill separately/)).not.toBeInTheDocument();
+  });
+
+  // converse-ai#1447: readers priced EVERY call minute at $0.10. The invariant
+  // that keeps that misreading out is not the exact wording — it is that a
+  // quoted rate may never appear in a sentence that fails to name the built-in
+  // dialer it applies to. Scanning textContent rather than matching one element
+  // means inline markup around the rate cannot defeat this, and it also catches
+  // a second, unscoped rate added anywhere else on the page.
+  test('every per-minute rate on the page sits in a sentence naming the built-in dialer', () => {
+    const quotingTheRate = (document.body.textContent ?? '')
+      .replace(/\s+/g, ' ')
+      .split(/(?<=[.!?])\s+/)
+      .filter((sentence) => sentence.includes('$0.10'));
+
+    expect(quotingTheRate).toHaveLength(1);
+    expect(quotingTheRate[0]).toMatch(/Only the optional built-in dialer/);
   });
 
   test('the Team tier is role-priced with a 20-seat cap', () => {
